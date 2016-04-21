@@ -8,7 +8,7 @@ namespace CodeAbuse.Constructors
 {
     class GoodConstructor
     {
-        public class BadParameters
+        public class Example
         {
             public void DoSomeStuff()
             {
