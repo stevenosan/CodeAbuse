@@ -12,7 +12,7 @@ namespace CodeAbuse.Factories
         {
             public void Save(Customer customer)
             {
-                if (!customer.Validate())
+                if (!customer.ValidatePhoneNumber())
                 {
                     throw new ArgumentException();
                 }
@@ -22,7 +22,7 @@ namespace CodeAbuse.Factories
         public class Customer
         {
             private string _phoneNumber;
-            public bool Validate()
+            public bool ValidatePhoneNumber()
             {
                 //if PhoneNumber is not valid
                 return false;
