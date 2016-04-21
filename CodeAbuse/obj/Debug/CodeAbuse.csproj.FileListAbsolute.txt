@@ -1,0 +1,6 @@
+C:\CodeMash\CodeAbuse\CodeAbuse\bin\Debug\CodeAbuse.exe.config
+C:\CodeMash\CodeAbuse\CodeAbuse\bin\Debug\CodeAbuse.exe
+C:\CodeMash\CodeAbuse\CodeAbuse\bin\Debug\CodeAbuse.pdb
+C:\CodeMash\CodeAbuse\CodeAbuse\obj\Debug\CodeAbuse.csprojResolveAssemblyReference.cache
+C:\CodeMash\CodeAbuse\CodeAbuse\obj\Debug\CodeAbuse.exe
+C:\CodeMash\CodeAbuse\CodeAbuse\obj\Debug\CodeAbuse.pdb
