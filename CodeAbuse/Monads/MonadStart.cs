@@ -51,6 +51,18 @@ namespace CodeAbuse.Monads
 
                 return this;
             }
+
+            public ErrorMonad<U> AndThen<U>(Func<TaskFactory, ErrorMonad<U>> step)
+            {
+                if (_error != null)
+                {
+                    return ErrorMonad<U>.Error(_error)
+                }
+                else
+                {
+                    return step(_value);
+                }
+            }
         }
 
         public class Customer
@@ -108,11 +120,13 @@ namespace CodeAbuse.Monads
             }
         }
 
+        
+
         public void ShowAndTell()
         {
             var name = "Bogart";
-            var phoneNumber = "6675309"
-            Customer.Create(name, phoneNumber).AndThen
+            var phoneNumber = "6675309";
+            Customer.Create(name, phoneNumber)
         }
     }
 }
