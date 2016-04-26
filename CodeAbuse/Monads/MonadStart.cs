@@ -56,7 +56,7 @@ namespace CodeAbuse.Monads
             {
                 if (_error != null)
                 {
-                    return ErrorMonad<U>.Error(_error)
+                    return ErrorMonad<U>.Error(_error);
                 }
                 else
                 {
@@ -126,7 +126,7 @@ namespace CodeAbuse.Monads
         {
             var name = "Bogart";
             var phoneNumber = "6675309";
-            Customer.Create(name, phoneNumber)
+            Customer.Create(name, phoneNumber).
         }
     }
 }
