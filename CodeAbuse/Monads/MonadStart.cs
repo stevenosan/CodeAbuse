@@ -124,8 +124,8 @@ namespace CodeAbuse.Monads
 
         public void ShowAndTell()
         {
-            var name = "Bogart";
-            var phoneNumber = "6675309";
+            var name = "Jenny";
+            var phoneNumber = "8675309";
             Customer.Create(name, phoneNumber).
         }
     }
