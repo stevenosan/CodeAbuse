@@ -11,32 +11,33 @@ namespace CodeAbuse.Callbacks
     {
         public class Cache
         {
+            private Dictionary<int, string> _cache = new Dictionary<int, string>();
+            
             public bool Contains(int key)
             {
-                //check to see if it contains a key
-                return true;
+                return _cache.ContainsKey(key);
             }
 
             public void Add(int key, string value)
             {
-                //add the cache to the value
+                _cache.Add(key, value);
             }
 
             public string Get(int key)
             {
-                return "what's up my GlipGlops";
+                string value = "";
+                if (_cache.TryGetValue(key, value))
+                {
+                       return value;
+                }
+                throw new Exception("That key doesn't exist yet fool! Check Contains() first next time!");
             }
         }
 
-        private string LoadValue(int key)
-        {
-            return "Glip glop";
-        }
-
-        public void normalProcedure()
+        public void NormalProcedure()
         {
             var cache = new Cache();
-            var value = "Glip glop";
+            var value = "";
             var key = 5;
 
             if (cache.Contains(key))
@@ -50,10 +51,11 @@ namespace CodeAbuse.Callbacks
             }
         }
 
-        public void abusedProcedure()
+        public void AbusedProcedure()
         {
-            var key = 123;
             var cache = new Cache();
+            var key = 123;
+            
             var value = cache.Get(key);
 
             if (value == null)
@@ -61,6 +63,11 @@ namespace CodeAbuse.Callbacks
                 value = LoadValue(key);
                 cache.Add(key, value);
             }
+        }
+        
+        private string LoadValue(int key)
+        {
+            return "Glip glop";
         }
     }
 }
