@@ -12,15 +12,16 @@ namespace CodeAbuse.Callbacks
 
         public class Cache
         {
+            private Dictionary<int, string> _cache = new Dictionary<int, string>();
+            
             public bool Contains(int key)
             {
-                //check to see if it contains a key
-                return true;
+                return _cache.ContainsKey(key);
             }
 
             public void Add(int key, string value)
             {
-                //add the cache to the value
+                _cache.Add(key, value);
             }
 
             public string Get(int key, CacheAction action)
@@ -29,21 +30,25 @@ namespace CodeAbuse.Callbacks
                     Add(key, action(key))
                 }
                 
-                return "what's up my GlipGlops";
+                string value = "";
+                
+                _cache.TryGetValue(key, value);
+                
+                return value;
             }
         }
 
-        private string LoadValue(int key)
-        {
-            return "Glip glop";
-        }
-        
         public void NewWayToCall()
         {
             var key = 123;
             var cache = new Cache();
 
             var value = cache.Get(key, LoadValue);
+        }
+        
+        private string LoadValue(int key)
+        {
+            return "Glip glop";
         }
     }
 }
