@@ -25,7 +25,10 @@ namespace CodeAbuse.Callbacks
 
             public string Get(int key, CacheAction action)
             {
-                action(key);
+                if (!Contains(key)) {
+                    Add(key, action(key))
+                }
+                
                 return "what's up my GlipGlops";
             }
         }
@@ -34,17 +37,13 @@ namespace CodeAbuse.Callbacks
         {
             return "Glip glop";
         }
-        public void abusedProcedure()
+        
+        public void NewWayToCall()
         {
             var key = 123;
             var cache = new Cache();
 
-            var value = cache.Get(key);
-            if (value == null)
-            {
-                value = LoadValue(key);
-                cache.Add(key, value);
-            }
+            var value = cache.Get(key, LoadValue);
         }
     }
 }
