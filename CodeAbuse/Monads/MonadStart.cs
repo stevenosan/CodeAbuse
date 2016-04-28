@@ -46,7 +46,7 @@ namespace CodeAbuse.Monads
                 return this;
             }
 
-            public ErrorMonad<U> AndThen<U>(Func<TaskFactory, ErrorMonad<U>> step)
+            public ErrorMonad<U> AndThen<U>(Func<T, ErrorMonad<U>> step)
             {
                 if (_error != null)
                 {
@@ -72,22 +72,22 @@ namespace CodeAbuse.Monads
                 _phoneNumber = phoneNumber;
             }
 
-            public static Customer Create(string name, string phoneNumber)
+            public static ErrorMonad<Customer> Create(string name, string phoneNumber)
             {
                 if (ValidPhoneNumber.IsMatch(phoneNumber))
                 {
-                    return ErrorMonad<Customer>.Valid(Customer.Create(name, phoneNumber));
+                    return ErrorMonad<Customer>.Valid(new Customer(name, phoneNumber));
                 }
                 else
                 {
-                    return ErrorMonad<Customer>.Error("Invalid PhoneNumber");
+                    return ErrorMonad<Customer>.Error("THERE WAS AN ERRORRR");
                 }
             }
         }
 
         public class CustomerRepository
         {
-            public ErrorMonad<int> Save(Customer customer)
+            public ErrorMonad<int>  Save(Customer customer)
             {
                 if (Successful(customer))
                 {
@@ -114,13 +114,30 @@ namespace CodeAbuse.Monads
             }
         }
 
-        
-
         public void ShowAndTell()
         {
+<<<<<<< HEAD
+            var name = "Bogart";
+            var phoneNumber = "6675309";
+
+            var repository = new CustomerRepository();
+
+            Customer.Create(name, phoneNumber).AndThen(customer => repository.Save(customer)).OnError(ShowError).OnValid(ReturnCustomerId);
+        }
+
+        private void ShowError(string errorMessage)
+        {
+            throw new Exception(errorMessage);
+        }
+
+        private void ReturnCustomerId(int customerId)
+        {
+            Console.Write(customerId);
+=======
             var name = "Jenny";
             var phoneNumber = "8675309";
             Customer.Create(name, phoneNumber);
+>>>>>>> 4f140877dd676bf89bf15cdf1b078bc858810e4f
         }
     }
 }
