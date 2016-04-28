@@ -126,7 +126,7 @@ namespace CodeAbuse.Monads
         {
             var name = "Jenny";
             var phoneNumber = "8675309";
-            Customer.Create(name, phoneNumber).
+            Customer.Create(name, phoneNumber);
         }
     }
 }
