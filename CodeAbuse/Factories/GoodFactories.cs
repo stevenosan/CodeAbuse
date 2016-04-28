@@ -1,49 +1,52 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeAbuse.Factories
 {
-    class GoodFactories
+    public static class CustomerFactory
     {
-        public static class CustomerFactory
-        { 
-            public class Customer
-            {
-                private string _name;
-                private string _phoneNumber;
+        public class Customer
+        {
+            private string _name;
+            private string _phoneNumber;
 
-                private Customer(string name, string phoneNumber)
-                {
-                    _name = name;
-                    _phoneNumber = phoneNumber;
-                }
-                public static Customer Create(string name, string phoneNumber)
-                {
-                    if (ValidatePhoneNumber(phoneNumber))
-                    {
-                        return new Customer(name, phoneNumber);
-                    }
-                    else
-                    {
-                        throw new Exception();
-                    }
-                }
+            private Customer(string name, string phoneNumber)
+            {
+                _name = name;
+                _phoneNumber = phoneNumber;
             }
 
-            private static bool ValidatePhoneNumber(string phoneNumber)
+            public static Customer Create(string name, string phoneNumber)
             {
-                //validate the phone number
-                return true;
+                if (!ValidatePhoneNumber(phoneNumber))
+                {
+                    throw new ArgumentException();
+                }
+                return new Customer(name, phoneNumber);
             }
         }
 
-        public void AddSteve()
+        private static bool ValidatePhoneNumber(string phoneNumber)
         {
+            //validate the phone number
+            return true;
+        }
+    }
+
+    public class CustomerRepositoryUsingFactory
+    {
+        public void Save(CustomerFactory.Customer customer)
+        {
+            // Save the customer
+        }
+    }
+
+    public class GoodFactoriesExample
+    {
+        public void NewWayToCall()
+        {
+            var customerRepository = new CustomerRepositoryUsingFactory();
             var steve = CustomerFactory.Customer.Create("steve", "453-123-4567");
+            customerRepository.Save(steve);
         }
     }
 }

@@ -1,32 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeAbuse.Factories
 {
-    class BadFactories
+    public class Customer
     {
-        public class CustomRepository
+        public string Name { get; set; }
+        public string PhoneNumber { get; set; }
+
+        public bool ValidatePhoneNumber()
         {
-            public void Save(Customer customer)
+            //if PhoneNumber is not valid
+            return false;
+        }
+    }
+
+    public class CustomerRepository
+    {
+        public void Save(Customer customer)
+        {
+            if (!customer.ValidatePhoneNumber())
             {
-                if (!customer.ValidatePhoneNumber())
-                {
-                    throw new ArgumentException();
-                }
+                throw new ArgumentException();
             }
+            // Save the customer
+        }
+    }
+
+    public class BadFactoriesExample
+    {
+        public void ExpectedProcedure()
+        {
+            var customerRepository = new CustomerRepository();
+            var customer = new Customer { PhoneNumber = "555-867-5309" };
+            customerRepository.Save(customer);
         }
 
-        public class Customer
+        public void AbusedProcedure()
         {
-            private string _phoneNumber;
-            public bool ValidatePhoneNumber()
-            {
-                //if PhoneNumber is not valid
-                return false;
-            }
+            var customerRepository = new CustomerRepository();
+            var customer = new Customer { PhoneNumber = "blarg" };
+
+            // This will throw an exception because PhoneNUmber must be set to a valid phone number
+            customerRepository.Save(customer);
         }
     }
 }
