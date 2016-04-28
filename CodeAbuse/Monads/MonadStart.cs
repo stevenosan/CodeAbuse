@@ -120,6 +120,7 @@ namespace CodeAbuse.Monads
 
         public void ShowAndTell()
         {
+<<<<<<< HEAD
             var name = "Bogart";
             var phoneNumber = "6675309";
 
@@ -136,6 +137,11 @@ namespace CodeAbuse.Monads
         private void ReturnCustomerId(int customerId)
         {
             Console.Write(customerId);
+=======
+            var name = "Jenny";
+            var phoneNumber = "8675309";
+            Customer.Create(name, phoneNumber);
+>>>>>>> 4f140877dd676bf89bf15cdf1b078bc858810e4f
         }
     }
 }
