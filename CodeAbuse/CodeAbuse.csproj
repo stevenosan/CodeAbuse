@@ -43,15 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Callbacks\BadCallBacks.cs" />
-    <Compile Include="Callbacks\GoodCallBacks.cs" />
+    <Compile Include="Callbacks\BadCallbacks.cs" />
+    <Compile Include="Callbacks\GoodCallbacks.cs" />
     <Compile Include="Constructors\BadConstructor.cs" />
     <Compile Include="Constructors\GoodConstructor.cs" />
+    <Compile Include="Constructors\Models\CartTransaction.cs" />
     <Compile Include="Factories\BadFactories.cs" />
     <Compile Include="Factories\GoodFactories.cs" />
     <Compile Include="Monads\MonadStart.cs" />
     <Compile Include="Parameters\BadParameters.cs" />
     <Compile Include="Parameters\GoodParameters.cs" />
+    <Compile Include="Parameters\Models\CartTransaction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

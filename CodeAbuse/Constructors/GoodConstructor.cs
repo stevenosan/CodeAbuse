@@ -1,40 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CodeAbuse.Constructors.Models;
 
 namespace CodeAbuse.Constructors
 {
-    class GoodConstructor
+    public class ShoppingServiceWithConstructor
     {
-        public class Example
+        private CartTransaction _cartTransaction;
+
+        public ShoppingServiceWithConstructor(CartTransaction cartTransaction)
         {
-            public void DoSomeStuff()
-            {
-                var shoppingService = new ShoppingService(new CartTransaction { TransactionUri = "http://www.google.com" });
-                shoppingService.AddToCart(1, 2, 3);
-            }
+            _cartTransaction = cartTransaction;
         }
 
-        public class ShoppingService
+        public void AddToCart(int cartId, int itemId, int quantity)
         {
-            private CartTransaction _cartTransaction;
-
-            public ShoppingService(CartTransaction cartTransaction)
-            {
-                _cartTransaction = cartTransaction;
-            }
-
-            public void AddToCart(int cartId, int itemId, int quantity)
-            {
-                //add an item to the cart
-            }
+            //add an item to the cart
         }
+    }
 
-        public class CartTransaction
+    public class GoodConstructorExample
+    {
+        public void NewWayToCall()
         {
-            public string TransactionUri { get; set; }
+            var shoppingService = new ShoppingServiceWithConstructor(new CartTransaction {TransactionUri = "http://www.google.com"});
+            shoppingService.AddToCart(1, 2, 3);
         }
     }
 }
