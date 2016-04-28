@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CodeAbuse.Monads
 {
     class MonadStart
     {
-
-
         public class ErrorMonad<T>
         {
             private readonly T _value;
